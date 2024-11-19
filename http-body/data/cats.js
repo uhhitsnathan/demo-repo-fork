@@ -38,12 +38,34 @@ const getCat = (id) => {
 };
 
 const createCat = (data) => {
+    const newCat = {
+        id:nextId(),
+        ...data
+    }
+    cats.push(newCat);
+    return newCat;
 };
 
 const updateCat = (id, data) => {
+    let catToUpdate = cats.find(cat => cat.id === id);
+    
+    cats = cats.map(cat => {
+        if (cat.id !== id){
+            return cat;
+        }
+        let updatedCat = {
+            ...catToUpdate,
+            ...data
+        }
+        return updatedCat;
+    })
+
+    let updatedCat = cats.find(cat => cat.id ===id);
+    return updatedCat;
 };
 
 const deleteCat = (id) => {
+
 };
 
 export {getCats, getCat, createCat, updateCat, deleteCat};
